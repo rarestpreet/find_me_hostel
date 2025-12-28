@@ -5,18 +5,15 @@ import com.project.hostel_finder.exception.UserNotFoundException;
 import com.project.hostel_finder.mapper.UsersMapper;
 import com.project.hostel_finder.model.Users;
 import com.project.hostel_finder.repository.UsersRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class UsersService {
 
     private final UsersRepo usersRepo;
 
-    @Autowired
-    public UsersService(UsersRepo usersRepo) {
-        this.usersRepo = usersRepo;
-    }
 
     public Users findUser(long id) {
         return usersRepo.findById(id).orElseThrow(
