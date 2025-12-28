@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class Hostel {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false)
-    private String price;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 
     @OneToMany(mappedBy = "hostel", cascade = CascadeType.ALL)
     private List<HostelImages> images;
@@ -35,6 +36,10 @@ public class Hostel {
             inverseJoinColumns = @JoinColumn(name = "amenity_id")
     )
     private List<Amenities> amenities;
+
+    @ManyToOne
+    @JoinColumn(name = "city", nullable = false)
+    private City city;
 
     @OneToOne(mappedBy = "hostel")
     private HostelManager hostelManager;

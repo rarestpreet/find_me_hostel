@@ -18,6 +18,12 @@ public class Amenities {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String icon;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "amenities")
     private List<Hostel> hostel;
